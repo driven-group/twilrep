@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { MessagingResponse } = require('twilio').twiml;
 const { createClient } = require('@supabase/supabase-js')
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+// const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+const supabase = serverSupabaseServiceRole(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, process.env.SUPABASE_SERVICE_KEY)
 
 const logReply = async (req) => {
   const { error } = await supabase
