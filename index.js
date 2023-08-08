@@ -14,7 +14,6 @@ const supabase = createClient(supabaseUrl, serviceRoleSecret, {
 })
 
 const logReply = async (req) => {
-  console.log(req)
   const { error } = await supabase
         .from('sms')
         .insert({
@@ -22,7 +21,7 @@ const logReply = async (req) => {
           message: req.body.Body
         })
         .then((response) => {
-            console.log(response)
+            console.log(response.status)
             return response.status
         })
         .catch((error) => {
