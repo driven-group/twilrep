@@ -3,7 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { MessagingResponse } = require('twilio').twiml;
 const { createClient } = require('@supabase/supabase-js')
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+const supabaseUrl = process.env.SUPABASE_URL
+const serviceRoleSecret = process.env.SUPABASE_SERVICE_KEY
+const supabase = createClient(supabaseUrl, serviceRoleSecret, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
+  },
+})
 
 const logReply = async (req) => {
   console.log(req)
