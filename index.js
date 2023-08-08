@@ -6,6 +6,7 @@ const { createClient } = require('@supabase/supabase-js')
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 const logReply = async (req) => {
+  console.log(req)
   const { error } = await supabase
         .from('sms')
         .insert({
@@ -13,7 +14,7 @@ const logReply = async (req) => {
           message: req.body.Body
         })
         .then((response) => {
-            console.log(response.status)
+            console.log(response)
             return response.status
         })
         .catch((error) => {
