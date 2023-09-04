@@ -24,7 +24,7 @@ const logReply = async (req) => {
     if (error) {
       console.log('SB Error:', error)
     } else {
-      console.log('SB Res:', data.status, data)
+      console.log('SB Res:', data)
     }
 }
 
