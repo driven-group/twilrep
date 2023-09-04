@@ -33,8 +33,8 @@ const logReply = async (req) => {
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/sms', (req, res) => {
-  logReply(req)
+app.post('/sms', async (req, res) => {
+  await logReply(req)
   const twiml = new MessagingResponse();
 
   twiml.message('Thank you for your message. This number is automated and will not reply, please call directly: \n+61861866777\nOr contact us via our website with any queries.\nhttps://yourcarsold.com.au');
