@@ -15,20 +15,17 @@ const supabase = createClient(supabaseUrl, serviceRoleSecret, {
 
 const logReply = async (req) => {
   console.log(req.body)
-  const { error } = await supabase
-      .from('sms')
-      .insert({
-        from: req.body.From,
-        message: req.body.Body
-      })
-      .then((response) => {
-          console.log(response.status)
-          return response.status
-      })
-      .catch((error) => {
-          console.log(error)
-          return error
-      })
+  const { data, error } = await supabase
+    .from('sms')
+    .insert({
+      from: req.body.From,
+      message: req.body.Body
+    })
+    if (error) {
+      console.log('SB Error:', error)
+    } else {
+      console.log('SB Res:', data.status, data)
+    }
 }
 
 const app = express();
