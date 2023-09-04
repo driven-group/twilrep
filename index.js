@@ -14,21 +14,21 @@ const supabase = createClient(supabaseUrl, serviceRoleSecret, {
 })
 
 const logReply = async (req) => {
-  console.log(req)
+  console.log(req.body)
   const { error } = await supabase
-        .from('sms')
-        .insert({
-          from: req.body.From,
-          message: req.body.Body
-        })
-        .then((response) => {
-            console.log(response.status)
-            return response.status
-        })
-        .catch((error) => {
-            console.log(error)
-            return error
-        })
+      .from('sms')
+      .insert({
+        from: req.body.From,
+        message: req.body.Body
+      })
+      .then((response) => {
+          console.log(response.status)
+          return response.status
+      })
+      .catch((error) => {
+          console.log(error)
+          return error
+      })
 }
 
 const app = express();
